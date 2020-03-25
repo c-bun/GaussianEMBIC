@@ -8,10 +8,10 @@ function [Ns,state_para] = cpbic_analysis(data)
 
 cp = findcp(data); % change point analysis (with a default type-I error rate of 0.05).
 Yi = AHclusterN(data,cp); % agglomerative hierachical(AH) clustering.
-%Yem = AHstateN(Yi); 
+Yem = AHstateN(Yi); 
 % calcluate parameters from AH clustering. Use this line instead of the next 
 % line if parameters are to be calculated without using EM clustering. 
-Yem = EMclusterN(Yi); % calcluate parameters from EM clustering.
+%Yem = EMclusterN(Yi); % calcluate parameters from EM clustering.
 bic = BICtestN(Yi,Yem); % BIC analysis from the clustering results. 
 k = (bic == max(bic));  
 Ns = Yem{1}(k).nos; 
